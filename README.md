@@ -60,6 +60,11 @@
  */
 - (void)gd_setGIFImageWithGIFURLStr: placeholderImage:;
 
+```
+##可以使用下面的方法对你的GIF的动画进行暂停等操作
+
+```obj
+
 #pragma mark - 暂停
 -(void)gd_GIFPasue;
 #pragma mark - 从暂停地方开始
@@ -69,3 +74,4 @@
 #pragma mark - 开始
 -(void)gd_GIFStart;
 ```
+
