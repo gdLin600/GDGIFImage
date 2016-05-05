@@ -1,5 +1,5 @@
 # GDGIFImage
-是您的UIImageView支持GIF
+shi您的UIImageView支持GIF
 ```obj
 
 ```
