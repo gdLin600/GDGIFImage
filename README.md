@@ -63,5 +63,4 @@
 #pragma mark - 从暂停地方开始
 -(void)gd_GIFResume;
 
-
 ```
