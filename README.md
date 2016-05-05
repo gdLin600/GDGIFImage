@@ -2,7 +2,7 @@
 ##使您的UIImageView支持GIF 
 ###这又是一个分类,这个分类可以使您的UIImageView 支持GIF
 ###这个分类是受SDWebImage中的UIImage+GIF启发对UIImageView做的一个分类来支持GIF
-###
+###同时支持对你的GIF进行暂停 开始等操作
 
 
 ```obj
@@ -63,5 +63,8 @@
 -(void)gd_GIFPasue;
 #pragma mark - 从暂停地方开始
 -(void)gd_GIFResume;
-
+#pragma mark - 停止
+-(void)gd_GIFStop;
+#pragma mark - 开始
+-(void)gd_GIFStart;
 ```
