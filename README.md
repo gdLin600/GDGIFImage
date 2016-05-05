@@ -57,4 +57,11 @@
  *  根据gif URlSte设置
  */
 - (void)gd_setGIFImageWithGIFURLStr: placeholderImage:;
+
+#pragma mark - 暂停
+-(void)gd_GIFPasue;
+#pragma mark - 从暂停地方开始
+-(void)gd_GIFResume;
+
+
 ```
