@@ -24,8 +24,8 @@
     // Do any additional setup after loading the view, typically from a nib.
     UIImageView *imageV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
     //    [imageV gd_setGIFImageWithGIFURL:[NSURL URLWithString:@"http://images.17173.com/2015/news/2015/07/06/2015cpb0706gif22.gif"]placeholderImage:[UIImage imageNamed:@"friendsTrend_login_click"]];
-    [imageV gd_setGIFImageWithGIFURLStr:@"http://images.17173.com/2015/news/2015/07/06/2015cpb0706gif22.gif" placeholderImage:[UIImage imageNamed:@"friendsTrend_login_click"]];
-    //    [imageV gd_setGIFImageWithGIFName:@"test" placeholderImage:[UIImage imageNamed:@"friendsTrend_login_click"]];
+    //    [imageV gd_setGIFImageWithGIFURLStr:@"http://images.17173.com/2015/news/2015/07/06/2015cpb0706gif22.gif" placeholderImage:[UIImage imageNamed:@"friendsTrend_login_click"]];
+    [imageV gd_setGIFImageWithGIFName:@"test" placeholderImage:[UIImage imageNamed:@"friendsTrend_login_click"]];
     [self.view addSubview:imageV];
     
     self.imageV = imageV;

@@ -15,7 +15,7 @@
 		6666CADD1CDAEAE800713EFB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6666CADB1CDAEAE800713EFB /* LaunchScreen.storyboard */; };
 		6666CAE81CDAEAE800713EFB /* GDGIFImageDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6666CAE71CDAEAE800713EFB /* GDGIFImageDemoTests.m */; };
 		6666CAF31CDAEAE800713EFB /* GDGIFImageDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6666CAF21CDAEAE800713EFB /* GDGIFImageDemoUITests.m */; };
-		6666CB091CDAF29200713EFB /* test@2x.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6666CB081CDAF29200713EFB /* test@2x.gif */; };
+		6666CB091CDAF29200713EFB /* test@3x.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6666CB081CDAF29200713EFB /* test@3x.gif */; };
 		6666CB0D1CDB09F400713EFB /* UIImageView+GDGIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 6666CB0C1CDB09F400713EFB /* UIImageView+GDGIF.m */; };
 /* End PBXBuildFile section */
 
@@ -53,7 +53,7 @@
 		6666CAEE1CDAEAE800713EFB /* GDGIFImageDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GDGIFImageDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6666CAF21CDAEAE800713EFB /* GDGIFImageDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GDGIFImageDemoUITests.m; sourceTree = "<group>"; };
 		6666CAF41CDAEAE800713EFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6666CB081CDAF29200713EFB /* test@2x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "test@2x.gif"; sourceTree = "<group>"; };
+		6666CB081CDAF29200713EFB /* test@3x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "test@3x.gif"; sourceTree = "<group>"; };
 		6666CB0B1CDB09F400713EFB /* UIImageView+GDGIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+GDGIF.h"; sourceTree = "<group>"; };
 		6666CB0C1CDB09F400713EFB /* UIImageView+GDGIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+GDGIF.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -111,7 +111,7 @@
 				6666CAD11CDAEAE800713EFB /* AppDelegate.m */,
 				6666CAD31CDAEAE800713EFB /* ViewController.h */,
 				6666CAD41CDAEAE800713EFB /* ViewController.m */,
-				6666CB081CDAF29200713EFB /* test@2x.gif */,
+				6666CB081CDAF29200713EFB /* test@3x.gif */,
 				6666CAD61CDAEAE800713EFB /* Main.storyboard */,
 				6666CAD91CDAEAE800713EFB /* Assets.xcassets */,
 				6666CADB1CDAEAE800713EFB /* LaunchScreen.storyboard */,
@@ -261,7 +261,7 @@
 			files = (
 				6666CADD1CDAEAE800713EFB /* LaunchScreen.storyboard in Resources */,
 				6666CADA1CDAEAE800713EFB /* Assets.xcassets in Resources */,
-				6666CB091CDAF29200713EFB /* test@2x.gif in Resources */,
+				6666CB091CDAF29200713EFB /* test@3x.gif in Resources */,
 				6666CAD81CDAEAE800713EFB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -516,6 +516,7 @@
 				6666CAF91CDAEAE800713EFB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6666CAFA1CDAEAE800713EFB /* Build configuration list for PBXNativeTarget "GDGIFImageDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -524,6 +525,7 @@
 				6666CAFC1CDAEAE800713EFB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6666CAFD1CDAEAE800713EFB /* Build configuration list for PBXNativeTarget "GDGIFImageDemoUITests" */ = {
 			isa = XCConfigurationList;
@@ -532,6 +534,7 @@
 				6666CAFF1CDAEAE800713EFB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

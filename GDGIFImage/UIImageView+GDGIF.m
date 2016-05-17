@@ -11,79 +11,89 @@
 
 @implementation NSObject (GDGIF)
 + (void)gd_GIFWithGIFNamed:(NSString *)gifName completion:(void (^) (UIImage *image))completion{
+    if (!gifName||!gifName.length) {
+        return;
+    }
     CGFloat scale = [UIScreen mainScreen].scale;
-    if (scale>2.0f) {
-        NSString *retinaPath = [[NSBundle mainBundle] pathForResource:[gifName stringByAppendingString:@"@3x"] ofType:@"gif"];
-        
+    NSString *name = [gifName uppercaseString];
+    if ([name hasSuffix:@"GIF"]) {
+        NSString *retinaPath = [[NSBundle mainBundle] pathForResource:gifName ofType:nil];
         NSData *data = [NSData dataWithContentsOfFile:retinaPath];
-        
         if (data) {
             [self gd_GIFWithGIFData:data completion:completion];
         }else{
-            NSString *retinaPath = [[NSBundle mainBundle] pathForResource:[gifName stringByAppendingString:@"@2x"] ofType:@"gif"];
-            
-            NSData *data = [NSData dataWithContentsOfFile:retinaPath];
-            
-            if (data) {
-                [self gd_GIFWithGIFData:data completion:completion];
+            if (completion) {
+                completion([UIImage imageNamed:gifName]);
+            }
+        }
+        return;
+    }
+    NSArray *types = @[@"gif",@"Gif",@"GIf",@"GiF",@"GIF",@"gIf",@"gIF",@"giF"];
+    NSString *path3x ;
+    NSString *path2x ;
+    NSString *path1x ;
+    for (NSString *type in types) {
+        for (NSInteger i = 1; i<4; i++) {
+            if ([[NSBundle mainBundle] pathForResource:i == 1 ?gifName:[gifName stringByAppendingString:[NSString stringWithFormat:@"@%zdx",i]] ofType:type]) {
+                path1x = [[NSBundle mainBundle] pathForResource:i == 1 ?gifName:[gifName stringByAppendingString:[NSString stringWithFormat:@"@%zdx",i]] ofType:type];
+            }else if([[NSBundle mainBundle] pathForResource:i == 2 ?gifName:[gifName stringByAppendingString:[NSString stringWithFormat:@"@%zdx",i]] ofType:type]){
+                path2x = [[NSBundle mainBundle] pathForResource:[gifName stringByAppendingString:[NSString stringWithFormat:@"@%zdx",i]] ofType:type];
             }else{
-                
-                NSString *path = [[NSBundle mainBundle] pathForResource:gifName ofType:@"gif"];
-                
-                data = [NSData dataWithContentsOfFile:path];
-                
-                if (data) {
-                    [self gd_GIFWithGIFData:data completion:completion];
-                }else{
-                    if (completion) {
-                        completion([UIImage imageNamed:gifName]);
-                    }
-                    
-                }
+                path3x = [[NSBundle mainBundle] pathForResource:[gifName stringByAppendingString:[NSString stringWithFormat:@"@%zdx",i]] ofType:type];
+            }
+        }
+        if(path1x.length && path2x.length && path3x.length){
+            break;
+        }
+    }
+    NSData *data;
+    if (scale>2.0f) {
+        
+        if ([NSData dataWithContentsOfFile:path3x]) {
+            data = [NSData dataWithContentsOfFile:path3x];
+        }else if ([NSData dataWithContentsOfFile:path2x]) {
+            data = [NSData dataWithContentsOfFile:path2x];
+        }else{
+            data = [NSData dataWithContentsOfFile:path1x];
+        }
+        if (data) {
+            [self gd_GIFWithGIFData:data completion:completion];
+        }else{
+            if (completion) {
+                completion([UIImage imageNamed:gifName]);
             }
         }
     }else if (scale > 1.0f) {
-        
-        NSString *retinaPath = [[NSBundle mainBundle] pathForResource:[gifName stringByAppendingString:@"@2x"] ofType:@"gif"];
-        
-        NSData *data = [NSData dataWithContentsOfFile:retinaPath];
-        
+        if ([NSData dataWithContentsOfFile:path2x]) {
+            data = [NSData dataWithContentsOfFile:path2x];
+        }else{
+            data = [NSData dataWithContentsOfFile:path1x];
+        }
         if (data) {
             [self gd_GIFWithGIFData:data completion:completion];
         }else{
-            
-            NSString *path = [[NSBundle mainBundle] pathForResource:gifName ofType:@"gif"];
-            
-            data = [NSData dataWithContentsOfFile:path];
-            
-            if (data) {
-                [self gd_GIFWithGIFData:data completion:completion];
-            }else{
-                
-                if (completion) {
-                    completion([UIImage imageNamed:gifName]);
-                }
+            if (completion) {
+                completion([UIImage imageNamed:gifName]);
             }
         }
     }
     else {
-        NSString *path = [[NSBundle mainBundle] pathForResource:gifName ofType:@"gif"];
-        
-        NSData *data = [NSData dataWithContentsOfFile:path];
-        
+        NSData *data = [NSData dataWithContentsOfFile:path1x];
         if (data) {
             [self gd_GIFWithGIFData:data completion:completion];
-        }
-        if (completion) {
-            completion([UIImage imageNamed:gifName]);
+        }else{
+            if (completion) {
+                completion([UIImage imageNamed:gifName]);
+            }
         }
     }
-    
 }
 
 
 + (void)gd_GIFWithGIFData:(NSData *)gifData completion:(void (^) (UIImage *image))completion{
-    
+    if (!gifData) {
+        return;
+    }
     CGImageSourceRef imageSource = CGImageSourceCreateWithData((__bridge CFDataRef)gifData, NULL);
     size_t imageCount = CGImageSourceGetCount(imageSource);
     if (imageCount <= 1) {
@@ -149,7 +159,6 @@
     if (frameDuration < 0.011f) {
         frameDuration = 0.100f;
     }
-    
     CFRelease(cfFrameProperties);
     return frameDuration;
 }
@@ -163,7 +172,9 @@
 }
 
 - (void)gd_setGIFImageWithGIFName:(NSString *)name placeholderImage:(UIImage *)placeholder{
-    self.image = placeholder;
+    if (placeholder) {
+        self.image = placeholder;
+    }
     [NSObject gd_GIFWithGIFNamed:name completion:^(UIImage *image) {
         self.image = image;
     }];
@@ -174,7 +185,9 @@
 }
 
 - (void)gd_setGIFImageWithGIFData:(NSData *)gifData placeholderImage:(UIImage *)placeholder{
-    self.image = placeholder;
+    if (placeholder) {
+        self.image = placeholder;
+    }
     [NSObject gd_GIFWithGIFData:gifData completion:^(UIImage *image) {
         self.image = image;
     }];
@@ -185,7 +198,9 @@
 }
 
 - (void)gd_setGIFImageWithGIFPath:(NSString *)gifPath placeholderImage:(UIImage *)placeholder{
-    self.image = placeholder;
+    if (placeholder) {
+        self.image = placeholder;
+    }
     [NSObject gd_GIFWithGIFPath:gifPath completion:^(UIImage *image) {
         self.image = image;
     }];
@@ -196,7 +211,9 @@
 }
 
 - (void)gd_setGIFImageWithGIFURL:(NSURL *)gifURL placeholderImage:(UIImage *)placeholder{
-    self.image = placeholder;
+    if (placeholder) {
+        self.image = placeholder;
+    }
     [NSObject gd_GIFWithGIFURL:gifURL completion:^(UIImage *image) {
         self.image = image;
     }];

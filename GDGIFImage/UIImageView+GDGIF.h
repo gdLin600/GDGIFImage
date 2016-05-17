@@ -25,7 +25,6 @@
 + (void)gd_GIFWithGIFURLStr:(NSString *)gifURLStr completion:(void (^) (UIImage *image))completion;
 
 
-
 @end
 
 
